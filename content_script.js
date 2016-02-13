@@ -2,8 +2,8 @@
 window.onload = function() {
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-      var searchTerm = document.getElementById("input_text").value;
-      matchText(document, new RegExp("\\b" + searchTerm + "\\b", "g"), function(node, match, offset) {
+      // var searchTerm = document.getElementById("input_text").value;
+      matchText(document, new RegExp("\\b" + request.searchTerm + "\\b", "g"), function(node, match, offset) {
           var span = document.createElement("span");
           span.style = "background-color:#FFFF01";
           span.textContent = match;
