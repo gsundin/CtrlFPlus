@@ -10,6 +10,20 @@
     "default_popup": "popup.html",
     "default_title": "Hello world"
   },
+
+  /*
+   * This is necessary to tell Google Chrome
+   * that we are using content_script.js
+   */
+  "content_scripts": [{
+    "matches": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "js": ["content_script.js"],
+    "run_at": "document_end"
+  }],
+
   "permissions": [
     "tabs",
     "activeTab"
