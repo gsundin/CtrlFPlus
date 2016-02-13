@@ -1,1 +1,2 @@
 # CtrlFPlus
+Google Chrome plugin
