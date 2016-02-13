@@ -6,6 +6,7 @@ window.onload = function() {
       matchText(document, new RegExp("\\b" + request.searchTerm + "\\b", "g"), function(node, match, offset) {
           var span = document.createElement("span");
           span.style = "background-color:#FFFF01";
+          span.id = "search-highlight-text";
           span.textContent = match;
           return span;
       });
@@ -21,6 +22,9 @@ window.onload = function() {
       while (child) {
           switch (child.nodeType) {
           case 1:
+              if (child.id == "search-highlight-text") {
+                child.style = "";
+              }
               if (excludeElements.indexOf(child.tagName.toLowerCase()) > -1)
                   break;
               matchText(child, regex, callback, excludeElements);
