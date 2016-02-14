@@ -2,17 +2,36 @@
 window.onload = function() {
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    // var searchTerm = document.getElementById("input_text").value;
-    matchText(document, new RegExp("\\b" + request.searchTerm + "\\b", "g"), function(node, match, offset) {
+    // todo : convert to lowercase
+    if (request.searchTerm == "shia labeouf") {
+      document.body.style.background = "url('https://www.birchbox.com/images/uploads/shia_labeouf_clapping.gif') repeat";
+      document.body.style.backgroundSize = "160px 90px";
+    } else if (request.searchTerm == "twerk it") {
+      twerkIt()
+    } else {
+      // var searchTerm = document.getElementById("input_text").value;
+      matchText(document, new RegExp("\\b" + request.searchTerm + "\\b", "g"), function(node, match, offset) {
       var span = document.createElement("span");
-      span.style = "background-color:#FFFF01";
+      span.style = "background-color:#ffff00;color:#0f0f0a;font-weight:bold";
       span.id = "search-highlight-text";
       span.textContent = match;
       return span;
     });
+    }
     sendResponse({messageStatus: "received"});
   });
 
+  var twerkIt = function() {
+    console.log("twerking it...");
+    var x_pos = 0;
+    var y_pos = 0;
+    var maxTwerk = 250;
+    var maxCount
+
+    // document.body.style.top  = "-1px";
+    // document.body.style.left = "-1px";
+
+} 
 
   var matchText = function(node, regex, callback, excludeElements) { 
 
