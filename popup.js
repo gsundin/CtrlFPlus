@@ -1,12 +1,26 @@
 window.onload = function() {
 
-  document.getElementById('submit_button').addEventListener('click', sendHighlightMessage);
-  document.getElementById('input_text').focus();
-  textInput = document.getElementById('input_text');
+  var textInput = document.getElementById('input_text');
+
+  textInput.focus();
+
+  textInput.addEventListener("keypress", function(e) {
+    if (e.keyCode === 13) {
+      // enter key
+      if (e.shiftKey) {
+        // with shift
+        return nextMessage();
+      } else {
+        // without shift
+        return sendHighlightMessage();
+      }
+    }
+    return false;
+  });
+
 
   var currentSearchIndex = 0;
   var maxSearchFound = 0;
-  var x = document.getElementById('submit_button');
 
   var prevEl = document.getElementById('prev');
   prevEl.addEventListener('click', prevMessage);
