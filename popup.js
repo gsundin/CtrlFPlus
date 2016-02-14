@@ -2,6 +2,16 @@ window.onload = function() {
 
   document.getElementById('submit_button').addEventListener('click', sendHighlightMessage);
   document.getElementById('input_text').focus();
+
+  document.getElementById('input_text').addEventListener("keypress", function(e) {
+    if (e.keyCode === 13) {
+      return sendHighlightMessage();
+    } else {
+      return false;
+    }
+  });
+
+
   textInput = document.getElementById('input_text');
 
   var currentSearchIndex = 0;
