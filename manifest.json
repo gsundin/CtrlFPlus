@@ -11,6 +11,18 @@
     "default_title": "Hello world"
   },
 
+"commands": {
+  "_execute_browser_action": {
+    "suggested_key": {
+      "default": "Ctrl+Shift+F",
+      "windows": "Ctrl+Shift+F",
+      "mac": "Command+Shift+F",
+      "chromeos": "Ctrl+Shift+F",
+      "linux": "Ctrl+Shift+F"
+    }
+  }
+},
+
   /*
    * This is necessary to tell Google Chrome
    * that we are using content_script.js
