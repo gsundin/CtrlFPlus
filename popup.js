@@ -1,6 +1,5 @@
 window.onload = function() {
 
-  document.getElementById('submit_button').addEventListener('click', sendHighlightMessage);
   var textInput = document.getElementById('input_text');
 
   textInput.focus();
