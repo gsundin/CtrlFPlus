@@ -35,9 +35,8 @@ window.onload = function() {
 
   var generateRegex = function(searchTermAry, articleText) {
     var expr = ""
-    var articleAry = articleText.split(" ");
     // trying to figure out the better regex
-//    var articleAry = Regex.Matches(input, "((\b[^\s]+\b)((?<=\.\w).)?)");
+    var articleAry = articleText.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g," ").replace(/\s{2,}/g," ").split(" ");
     var i, j;
     for (i = 0; i < articleAry.length; i++) {
       var word = articleAry[i];
