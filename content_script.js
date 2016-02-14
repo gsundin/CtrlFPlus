@@ -1,24 +1,41 @@
 
-window.onload = function() {
+var currentSearchIndex = 0;
+var searchLst = [];
 
+window.onload = function() {
+  var currentSearchIndex = 0;
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    // todo : convert to lowercase
-    if (request.searchTerm == "shia labeouf") {
-      document.body.style.background = "url('https://www.birchbox.com/images/uploads/shia_labeouf_clapping.gif') repeat";
-      document.body.style.backgroundSize = "160px 90px";
-    } else if (request.searchTerm == "twerk it") {
-      twerkIt();
-    } else {
+    if (request.highlight) {
+      // do search
+      searchLst = [];
+      // todo : convert to lowercase
+      if (request.searchTerm == "shia labeouf") {
+        document.body.style.background = "url('https://www.birchbox.com/images/uploads/shia_labeouf_clapping.gif') repeat";
+        document.body.style.backgroundSize = "160px 90px";
+      } else if (request.searchTerm == "twerk it") {
+        twerkIt();
+      }
       searchTermAry = request.searchTerm.split(' ');
       matchText(document, searchTermAry, function(node, match, offset) {
         var span = document.createElement("span");
-        span.style = "background-color:#ffff00;color:#0f0f0a;font-weight:bold";
         span.id = "search-highlight-text";
         span.textContent = match;
+        searchLst.push(span);
         return span;
-    });
+      });
+    } else {
+      currentSearchIndex += (searchLst.length + request.incrm);
+      currentSearchIndex = currentSearchIndex % searchLst.length;
     }
-    sendResponse({messageStatus: "received"});
+    for (i = 0; i < searchLst.length; i++) {
+      if (i == currentSearchIndex) {
+        searchLst[i].style = "background-color:#ffa64d;color:#0f0f0a;font-weight:bold";
+        searchLst[i].scrollIntoView();
+      } else {
+        searchLst[i].style = "background-color:#ffff00;color:#0f0f0a;";
+      }
+    }
+    sendResponse({messageStatus: "received", currIndex: currentSearchIndex, maxIndex: searchLst.length});
   });
 
   var twerkIt = function() {
