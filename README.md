@@ -16,11 +16,3 @@ Note: Re-load extension to test any change.
 Don't forget to inspect pop-out when developing
 
 
-# TODO
-
-* Find a way to highlight the text
-  * We should be close
-
-* Make a text box 
-
-* Make a logic that checks input and decides which text to high light
