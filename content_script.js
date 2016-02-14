@@ -45,8 +45,9 @@ window.onload = function() {
   }
 
   var doesMatchWith = function(a, b){
-    if(a.length == 0) return false;
-    if(b.length == 0) return false;
+    if (a.length == 0) return false;
+    if (b.length == 0) return false;
+    if (a.length == 0 || b.length == 0 || Math.abs(a.length - b.length) >= 4) return false; 
     a = a.toLowerCase();
     b = b.toLowerCase();
 
@@ -77,9 +78,21 @@ window.onload = function() {
         }
       }
     }
-    var threshold = 0.4;
     var dist = matrix[b.length][a.length];
-    return dist <= threshold * Math.max(a.length, b.length);
+
+    var relativeApproach = true;
+    if (relativeApproach) {
+      /* 
+       * relative length approach
+       */
+      var threshold = 0.4;
+      return dist <= threshold * Math.max(a.length, b.length);
+    } else {
+      /*
+       * absolute value
+       */
+      return dist <= 3;
+    }
   };
   var matchText = function(node, searchTermAry, callback, excludeElements) { 
 
