@@ -4,7 +4,7 @@ window.onload = function() {
   var x = document.getElementById('submit_button');
 
   x.addEventListener('click', sendHighlightMessage);
-  textInput = document.getElementById('input_text');
+  textInput = document.getElementById('input_text').focus();
 
   var prevEl = document.getElementById('prev');
   prevEl.addEventListener('click', prevMessage);
