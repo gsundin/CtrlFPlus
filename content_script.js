@@ -39,15 +39,51 @@ window.onload = function() {
   });
 
   var twerkIt = function() {
+
+    // wrap it up in prep for twerk
+
+    var div = document.createElement("div");
+    div.id = "wrap";
+
+    // Move the body's children into this wrapper
+    while (document.body.firstChild)
+    {
+        div.appendChild(document.body.firstChild);
+    }
+
+    // Append the wrapper to the body
+    document.body.appendChild(div);
+
+    // ready to twerk
     console.log("twerking it...");
     var x_pos = 0;
     var y_pos = 0;
-    var maxTwerk = 250;
-    var maxCount
+    var smallTwerk = 28;
+    var smallTwerkSpeed = 4;
+    var maxTwerk = 150;
+    var twerkSpeed = 3;
 
-    // document.body.style.top  = "-1px";
-    // document.body.style.left = "-1px";
+    var i = 0;
+    div.style.position = "absolute";
 
+    var pos = 0;
+    var id = setInterval(frame, 5);
+    function frame() {
+      var percent = pos / 360.0;
+      if (pos == 690) {
+        div.style.top = "0px";
+        div.style.left = "0px";
+        clearInterval(id);
+      } else {
+        pos++;
+        pos = pos % 360;
+        var degree = pos;
+
+        var angle = degree * Math.PI / 180.0;
+        div.style.top = maxTwerk * Math.cos(twerkSpeed * angle) + smallTwerk * Math.cos(smallTwerkSpeed * angle) + 'px'; 
+        div.style.left = maxTwerk * Math.sin(twerkSpeed * angle) + smallTwerk * Math.sin(smallTwerkSpeed * angle) + 'px'; 
+      }
+    }
   } 
 
   var generateRegex = function(searchTermAry, articleText) {
