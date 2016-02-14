@@ -31,7 +31,7 @@ window.onload = function() {
     // document.body.style.top  = "-1px";
     // document.body.style.left = "-1px";
 
-} 
+  } 
 
   var generateRegex = function(searchTermAry, articleText) {
     var expr = ""
