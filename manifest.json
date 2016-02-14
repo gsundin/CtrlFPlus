@@ -23,6 +23,7 @@
   }
 },
 
+
   /*
    * This is necessary to tell Google Chrome
    * that we are using content_script.js
