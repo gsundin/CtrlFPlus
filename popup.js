@@ -1,8 +1,7 @@
 window.onload = function() {
-  var x = document.getElementById('submit_button');
-
-  x.addEventListener('click', sendHighlightMessage);
-  textInput = document.getElementById('input_text').focus();
+  document.getElementById('submit_button').addEventListener('click', sendHighlightMessage);
+  document.getElementById('input_text').focus();
+  textInput = document.getElementById('input_text');
 
   function sendHighlightMessage() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
